@@ -35,36 +35,8 @@ docker-compose exec web bash
 composer install
 ```
 
-### 5. Настроить приложение (`.env` CodeIgniter)
 
-Внутри контейнера (в `/var/www/html`):
-
-```bash
-cp env .env
-```
-
-Отредактировать `.env` — заполнить секцию `database.default.*` (Если не сохранились прописанные мною настройки): 
-
-```ini
-database.default.hostname = db
-database.default.database = codeigniter_db
-database.default.username = root
-database.default.password = cod31gn1t3
-database.default.DBDriver = MySQLi
-database.default.DBPrefix =
-database.default.port = 3306
-```
-
-> Хост `db` — имя сервиса MySQL в `docker-compose.yml`. Порт `3306` —
-> внутренний порт контейнера (наружу проброшен как `3307`).
-
-Выйти из контейнера:
-
-```bash
-exit
-```
-
-### 6. Накатить миграции
+### 5. Накатить миграции
 
 ```bash
 docker-compose exec web php spark migrate
